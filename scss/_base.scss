@@ -1,0 +1,27 @@
+img {
+    object-fit: cover;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: $color-secondary;
+}
+
+.btn:hover {
+    color: $color-secondary;
+    box-shadow: 3px 3px 10px grey;
+}
+
+#banner {
+    position: relative;
+}
+
+#title {
+    position: absolute;
+    z-index: 5;
+    top: 20%;
+}
