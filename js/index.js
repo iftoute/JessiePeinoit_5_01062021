@@ -17,7 +17,7 @@ fetch ("http://localhost:3000/api/cameras")
                                                         <img class="imageCamera shadow mb-3" src="${camera.imageUrl}" width="100%" height="200" alt="image camera">
                                                         <h3 class= "nameCamera">${camera.name}</h3>
                                                         <p id="descriptionCamera" class="col 4">${camera.description}</p>
-                                                        <button type="button" class="btn bg-dark bg-gradient text-white" onclick="${camera._id} href="#">En savoir plus...</button>
+                                                        <button type="button" class="btn bg-dark bg-gradient text-white" onclick="localId('${camera._id}')" href="#">En savoir plus...</button>
                                                         
                                                     </div>
                                                 </a>
@@ -26,4 +26,9 @@ fetch ("http://localhost:3000/api/cameras")
             }
             //manque un .catch
         });
+
+// Fonction de stockage de l'ID du produit selectionné par l'utilisateur dans le localStorage 
+    function localId(id) {
+    localStorage.setItem('id', id );
+    }
         
