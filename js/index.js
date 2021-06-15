@@ -1,4 +1,6 @@
-// API Fetch pour récupérer les données
+
+
+// Récupération des données de l'API
 fetch ("http://localhost:3000/api/cameras")
         .then(function(response){
             if(response.ok) {
@@ -23,12 +25,13 @@ fetch ("http://localhost:3000/api/cameras")
                                                 </a>
                                                 `
             );
+            console.log(camera.id)
             }
             //manque un .catch
         });
 
 // Fonction de stockage de l'ID du produit selectionné par l'utilisateur dans le localStorage 
     function localId(id) {
-    localStorage.setItem('id', id );
+    localStorage.setItem('id', id);
     }
-        
+    
