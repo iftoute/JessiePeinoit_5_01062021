@@ -18,7 +18,9 @@ fetch ("http://localhost:3000/api/cameras")
                                                     <div id= "article" class="text-center">
                                                         <img class="imageCamera shadow mb-3" src="${camera.imageUrl}" width="100%" height="200" alt="image camera">
                                                         <h3 class= "nameCamera">${camera.name}</h3>
-                                                        <p id="descriptionCamera" class="col 4">${camera.description}</p>
+                                                        
+                                                        <p class="priceCamera fs-7 fw-normal">${(camera.price / 100).toFixed(2)}€</p>
+                                                        <button type="button" class="btn bg-dark bg-gradient text-white" onclick="addPanier('${camera._id}')">Ajouter au panier</button>
                                                         <button type="button" class="btn bg-dark bg-gradient text-white" onclick="localId('${camera._id}')" href="#">En savoir plus...</button>
                                                         
                                                     </div>

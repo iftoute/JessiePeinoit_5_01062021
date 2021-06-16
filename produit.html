@@ -12,20 +12,19 @@
 <body>
     <header>
         <div>
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row bg-light">
-                    <nav class="col navbar navbar-expand justify-content-between">
-                        <a class="navbar-brand" href="index.html">
-                            <img src="./images/logo.png" width="200" alt="logo orinoco">
-                        </a>
+                    <nav class="col navbar navbar-expand fixed-top" id="nav">
                             <ul class="navbar-nav">
                                 <!--Lien navigation page d'accueil active
-                                    <li class="nav-item">
+                                <li class="nav-item">
                                     <a class="nav-link active" href="index.html">Accueil</a>
                                 </li>
                                 <li class="nav-item">-->
-                                    <!--BOUTON PANIER HEADER-->
-                                    <button type="button" class="btn bg-dark bg-gradient text-white"><i class="fas fa-shopping-basket text-white px-2"></i>Panier</button>
+                                    <!--lIEN PANIER-->
+                                    <a href="./html/panier.html"><i class="fas fa-shopping-cart basketIcon"></i>
+                                        <span class="headerCount" id="counter">0</span>
+                                    </a>
                                 </li>
                             </ul>
                     </nav>
@@ -33,15 +32,30 @@
             </div>
         </div>
     </header>
+    <!--MAIN-->
     <main>
-        <div class="jumbotron">
-            <h2 class="text-center mt-5 mb-5">Sélectionnez l'objectif de votre choix</h2>
+        <!--BANNIERE EN-TETE-->
+        <div class="container-fluid mb-5" id="banner">
+            <div class="jumbotron text-center">
+                <div class="logo">
+                    <a href="/index.html"><img src="/images/logo-orinoco-white.png" class="logoImg" width="200" alt="logo orinoco">
+                </div>
+                <div class="titlePage">
+                    <h1 class="text-white" id="title">Le spécialiste de la vente d'appareils photo vintage</h1>
+                </div>
+
+            </div>
         </div>
         
         <!--ARTICLES-->
         <div class="container mb-5">
             <div class="row" id="product">
-              
+              <!--INSERTION DE L'ARTICLE SÉLECTIONNÉ PAR L'UTILISATEUR-->
+
+
+
+
+                
             </div>
         </div>   
 
@@ -58,7 +72,7 @@
             <div class="row">
                 <!--COORDONNEES-->    
                 <div class="col">
-                    <img src="./images/logo.png" class="rounded mx-auto d-block col-4 col-lg-3 mb-2" alt="logo de orinoco"/>
+                    <img src="./images/logo.png" class="rounded mx-auto d-block col-3 col-lg-2 col-md-2 mb-2" alt="logo de orinoco"/>
                     <p class="text-center mb-2">24 rue de la gare &middot; 31000 Toulouse &middot; 05 34 34 43 34</p>
                 </div>
             </div>

@@ -13,20 +13,19 @@
     <!--HEADER NAVIGATION-->
     <header>
         <div>
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row bg-light">
-                    <nav class="col navbar navbar-expand justify-content-between">
-                        <a class="navbar-brand" href="index.html">
-                            <img src="./images/logo.png" width="200" alt="logo orinoco">
-                        </a>
+                    <nav class="col navbar navbar-expand fixed-top" id="nav">
                             <ul class="navbar-nav">
                                 <!--Lien navigation page d'accueil active
-                                    <li class="nav-item">
+                                <li class="nav-item">
                                     <a class="nav-link active" href="index.html">Accueil</a>
                                 </li>
                                 <li class="nav-item">-->
-                                    <!--BOUTON PANIER HEADER-->
-                                    <button type="button" class="btn bg-dark bg-gradient text-white"><i class="fas fa-shopping-basket text-white px-2"></i>Panier</button>
+                                    <!--lIEN PANIER-->
+                                    <a href="./html/panier.html"><i class="fas fa-shopping-cart basketIcon"></i>
+                                        <span class="headerCount" id="counter">0</span>
+                                    </a>
                                 </li>
                             </ul>
                     </nav>
@@ -37,10 +36,15 @@
     <!--MAIN-->
     <main>
         <!--BANNIERE EN-TETE-->
-        <div class="container-fluid">
-            <div class="row" id="banner">
-                    <img src="./images/banner.png">
-                    <h1 class="text-center  text-white pt-3 pb-5" id="title">ORINOCO<br>Le spécialiste de la vente d'appareils photo vintage</h1>
+        <div class="container-fluid" id="banner">
+            <div class="jumbotron text-center">
+                <div class="logo">
+                    <img src="/images/logo-orinoco-white.png" class="logoImg" width="200" alt="logo orinoco">
+                </div>
+                <div class="titlePage">
+                    <h1 class="text-white" id="title">Le spécialiste de la vente d'appareils photo vintage</h1>
+                </div>
+
             </div>
         </div>
         <!--FIN BANNIERE EN-TETE-->
@@ -60,7 +64,7 @@
             <div class="row">
                 <!--COORDONNEES-->    
                 <div class="col">
-                    <img src="./images/logo.png" class="rounded mx-auto d-block col-4 col-lg-3 mb-2" alt="logo de orinoco"/>
+                    <img src="./images/logo.png" class="rounded mx-auto d-block col-3 col-lg-2 col-md-2 mb-2" alt="logo de orinoco"/>
                     <p class="text-center mb-2">24 rue de la gare &middot; 31000 Toulouse &middot; 05 34 34 43 34</p>
                 </div>
             </div>

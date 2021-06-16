@@ -12,16 +12,41 @@ a:hover {
 }
 
 .btn:hover {
-    color: $color-secondary;
+    background-color: $color-secondary !important;
     box-shadow: 3px 3px 10px grey;
 }
 
-#banner {
-    position: relative;
+.logoImg {
+    margin-top: 100px;
 }
 
 #title {
-    position: absolute;
-    z-index: 5;
-    top: 20%;
+    margin-top: 50px;
+}
+
+#nav {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav li {
+    justify-content: flex-end;
+}
+
+#counter, .basketIcon {
+    color: $color-secondary;
+}
+
+#banner {
+    padding: 0;
+}
+
+.jumbotron {
+    background-image: url(/images/banner.png);
+    height: 400px;
 }
