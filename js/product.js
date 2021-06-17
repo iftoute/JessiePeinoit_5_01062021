@@ -1,7 +1,5 @@
 //
-//console.log(localStorage.getItem('id'))
-//var url = "http://localhost:3000/api/cameras/"
-//console.log(url)
+console.log(localStorage.getItem('id'))
 var id = localStorage.id;
 
 var url = "http://localhost:3000/api/cameras/" + localStorage.id;
@@ -38,8 +36,8 @@ fetch (url)
                                                     `
             );
             for (let lens of camera.lenses) {
-                let container = document.getElementById("selectLens");
-                container.insertAdjacentHTML('beforeend', `<option>${lens}</option>
+                let selector = document.getElementById("selectLens");
+                selector.insertAdjacentHTML('beforeend', `<option>${lens}</option>
                 `)};
             })
             //console.log(id)
