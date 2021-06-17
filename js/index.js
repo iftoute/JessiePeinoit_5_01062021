@@ -1,4 +1,4 @@
-let product = [];
+//let product = [];
 
 // Récupération des données de l'API
 fetch ("http://localhost:3000/api/cameras")
@@ -14,24 +14,27 @@ fetch ("http://localhost:3000/api/cameras")
             for(camera of cameras){
             let elt = document.getElementById('articles');
             // Insertion d'élements HTML pour les articles
-            elt.insertAdjacentHTML('beforeend', `<a href="./html/produit.html" class="col col-sm-12 col-md-6 col-lg-4 mb-5">
+            elt.insertAdjacentHTML('beforeend', `<div class="col col-sm-12 col-md-6 col-lg-4 mb-5">
                                                     <div id= "article" class="text-center">
                                                         <img class="imageCamera shadow mb-3" src="${camera.imageUrl}" width="100%" height="200" alt="image camera">
                                                         <h3 class= "nameCamera">${camera.name}</h3>
                                                         <p class="priceCamera fs-7 fw-normal">${(camera.price / 100).toFixed(2)}€</p>
-                                                        <button type="button" class="btn bg-dark bg-gradient text-white" onclick="localId('${camera._id}')" href="#">En savoir plus...</button>
+                                                        <form method="get" action="../html/produit.html"> 
+                                                        <button type="submit" class="btn bg-dark bg-gradient text-white" onclick="localId('${camera._id}')" href="#">En savoir plus...</button>
+                                                        </form>
                                                         
                                                     </div>
-                                                </a>
+                                                </div>
                                                 `
             );
-            console.log(camera._id)
+            //console.log(camera._id)
             }
             //manque un .catch
         });
 
 // Fonction de stockage de l'ID du produit selectionné par l'utilisateur dans le localStorage 
     function localId(id) {
+    localStorage.clear();
     localStorage.setItem('id', id);
     }
     

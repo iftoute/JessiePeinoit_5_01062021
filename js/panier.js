@@ -8,28 +8,7 @@ let contact =
 };
 let total = 0;
 
-//INITIALISATION DU PANIER
-function initPanier(){
-    let panier = localStorage.getItem('panier');
-    if(panier != null){
-        return JSON.parse(panier);
-    }else{
-        return [];
-    }
-};
 
-//FONCTION AJOUTER AU PANIER / GESTION DES QUANTITES DE PRODUITS
-function addPanier(product){
-    let panier = initPanier();
-    let product = panier.find(product => product.id == id); //on récupère le produit
-    if(product > 0){   // si le produit est déjà présent dans le panier, ajouter 1 à la quantité
-        product.quantité +=
-    }else{
-        //sinon créer un nouveau produit avec une quantité à 1
-    }
-    panier.push(product);
-    savePanier(panier);
-}
 
 
 //FONCTION AFFICHER LE PANIER
@@ -63,10 +42,3 @@ function removePanier(product){
 
 
 
-
-//VERIFICATION DU FORMULAIRE
-document.querySelector('#form > [type=submit]').addEventListener('click', function(event){  //ON AJOUTE UN EVENEMENT SUR LE SUBMIT DU FORMULAIRE
-    for(let input of document.querySelectorAll('#form > input:not([type="submit"])')){ //ON VERIFIE TOUS LES INPUTS SAUF LE SUBMIT
-        input.reportValidity(); //VERIFIE LA VALIDITE DES CHAMPS RENSEIGNES PAR L'UTILISATEUR ET AFFICHE UN MESSAGE D'ERREUR SI BESOIN
-    }
-});

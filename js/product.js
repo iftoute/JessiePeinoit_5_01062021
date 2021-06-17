@@ -15,8 +15,9 @@ fetch (url)
             }
         })
         // Promise pour les éléments reçus par le serveur de l'objet sélectionné
-        .then(cameras  => {
+        .then(camera  => {
             let product = document.getElementById('product');
+
             // Insertion d'élements HTML pour l'article sélectionné
             product.insertAdjacentHTML('beforeend', ` <div class="col-6">
                                                         <img class="imageCamera shadow mb-3" src="${camera.imageUrl}" width="100%" height="400" alt="image camera">
@@ -30,11 +31,13 @@ fetch (url)
                                                             <select name="productLens" class="col-7" id="selectLens"></select>
                                                             <label for="quantité" class="col-4 mb-5">Quantité</label>
                                                             <input type="number" name="howmuch" step="1" class="col-1 text-center" id="quantité" min="1" value="1">
-                                                            <button type="button" class="btn bg-dark bg-gradient text-white" onclick="addPanier('${camera._id}')">Ajouter au panier</button>
+                                                            <button type="submit" class="btn bg-dark bg-gradient text-white" onclick="addPanier('${camera._id}')" href="#">Ajouter au panier</button>
                                                         </form>
                                                     </div>
                                                     `
-            );
+);
+            console.log(camera);
+
             for (let lens of camera.lenses) {
                 let selector = document.getElementById("selectLens");
                 selector.insertAdjacentHTML('beforeend', `<option>${lens}</option>
@@ -43,3 +46,29 @@ fetch (url)
             //console.log(id)
             //manque un .catch
         //});
+
+
+        //INITIALISATION DU PANIER
+function initPanier(){
+    let panier = localStorage.getItem('panier');
+    if(panier != null){
+        return JSON.parse(panier);
+    }else{
+        return [];
+    }
+};
+
+//FONCTION AJOUTER AU PANIER / GESTION DES QUANTITES DE PRODUITS
+function addPanier(item){
+    console.log(item, 'addpanier');
+    localStorage.setItem('article', item._id)
+    let panier = initPanier();
+    let product = panier.find(item => item.id == id); //on récupère le produit
+    if(product > 0){   // si le produit est déjà présent dans le panier, ajouter 1 à la quantité
+        //product.quantité += 
+    }else{
+        //sinon créer un nouveau produit avec une quantité à 1
+    }
+    panier.push(product);
+    savePanier(panier);
+}
