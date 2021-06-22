@@ -19,7 +19,7 @@ fetch ("http://localhost:3000/api/cameras")
                                                         <img class="imageCamera shadow mb-3" src="${camera.imageUrl}" width="100%" height="200" alt="image camera">
                                                         <h3 class= "nameCamera">${camera.name}</h3>
                                                         <p class="priceCamera fs-7 fw-normal">${(camera.price / 100).toFixed(2)}€</p>
-                                                        <form method="get" action="../html/produit.html"> 
+                                                        <form method="get" action="../html/product.html"> 
                                                         <button type="submit" class="btn bg-dark bg-gradient text-white" onclick="localId('${camera._id}')" href="#">En savoir plus...</button>
                                                         </form>
                                                         
@@ -34,7 +34,7 @@ fetch ("http://localhost:3000/api/cameras")
 
 // Fonction de stockage de l'ID du produit selectionné par l'utilisateur dans le localStorage 
     function localId(id) {
-    localStorage.clear();
+    //localStorage.clear();
     localStorage.setItem('id', id);
     }
     

@@ -8,6 +8,10 @@ a {
 }
 
 a:hover {
+    color: $color-secondary !important;
+}
+
+a.active {
     color: $color-secondary;
 }
 

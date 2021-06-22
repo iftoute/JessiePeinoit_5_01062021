@@ -1,5 +1,4 @@
-//
-console.log(localStorage.getItem('id'))
+//console.log(localStorage.getItem('id'))
 var id = localStorage.id;
 
 var url = "http://localhost:3000/api/cameras/" + localStorage.id;
@@ -31,12 +30,12 @@ fetch(url)
                                                             <select name="productLens" class="col-7" id="selectLens"></select>
                                                             <label for="quantité" class="col-4 mb-5">Quantité</label>
                                                             <input type="number" name="howmuch" step="1" class="col-1 text-center" id="quantité" min="1" value="1">
-                                                            <button type="submit" class="btn bg-dark bg-gradient text-white" onclick="addPanier('${camera._id}')" href="#">Ajouter au panier</button>
+                                                            <button type="submit" id="addBasket" class="btn bg-dark bg-gradient text-white" onclick="addToBasket('${camera._id}')">Ajouter au panier</button>
                                                         </form>
                                                     </div>
                                                     `
         );
-        console.log(camera);
+        //console.log(camera);
 
         for (let lens of camera.lenses) {
             let selector = document.getElementById("selectLens");
@@ -46,28 +45,27 @@ fetch(url)
 //manque un .catch
 //});
 
-
-//INITIALISATION DU PANIER
-function initPanier() {
-    let panier = localStorage.getItem('panier');
-    if (panier != null) {
-        return JSON.parse(panier);
+//VERIFICATION DU PANIER
+function checkBasket() {
+    let basket = localStorage.getItem('basket');
+    console.log(basket);
+    if (basket != null) {
+        return JSON.parse(basket);
     } else {
         return [];
     }
 };
+//console.log(localStorage);
 
-//FONCTION AJOUTER AU PANIER / GESTION DES QUANTITES DE PRODUITS
-function addPanier(item) {
-    console.log(item, 'addpanier');
-    localStorage.setItem('article', item._id)
-    let panier = initPanier();
-    let product = panier.find(item => item.id == id); //on récupère le produit
-    if (product > 0) {   // si le produit est déjà présent dans le panier, ajouter 1 à la quantité
-        //product.quantité += 
-    } else {
-        //sinon créer un nouveau produit avec une quantité à 1
-    }
-    panier.push(product);
-    savePanier(panier);
+//AJOUT D'ELEMENT AU PANIER
+function addToBasket(product){
+    let basket = checkBasket();
+    console.log(product);
+    basket.push(product);
+    console.log(product);
+    saveBasket(basket);
+}
+
+function saveBasket(basket){
+    localStorage.setItem('basket',JSON.stringify(basket));
 }

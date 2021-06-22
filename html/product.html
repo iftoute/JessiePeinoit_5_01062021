@@ -3,34 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Orinoco, le spécialiste de la vente d'appareils photo vintage à personnaliser">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orinoco | Confirmation de commande</title>
-    <link rel="stylesheet" href="../css/style.css">
     <script src="https://kit.fontawesome.com/ce82fe516e.js" crossorigin="anonymous"></script>
-
+    <title>Orinoco - Article</title>
+    <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
     <header>
+        <div>
+            <div class="container-fluid">
+                <div class="row bg-light">
+                    <!--NAVIGUATION-->
+                    <nav class="col navbar navbar-expand fixed-top" id="nav">
+                            <ul class="navbar-nav">
+                                    <!--PANIER-->
+                                    <a href="./html/panier.html"><i class="fas fa-shopping-cart basketIcon"></i>
+                                        <span class="headerCount" id="counter">0</span>
+                                    </a>
+                                </li>
+                            </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--MAIN-->
+    <main>
         <!--BANNIERE EN-TETE-->
-        <div class="container-fluid" id="banner">
+        <div class="container-fluid mb-5" id="banner">
             <div class="jumbotron text-center">
                 <div class="logo">
-                    <a href="../index.html"><img src="/images/logo-orinoco-white.png" class="logoImg" width="200" alt="logo orinoco"></a>
+                    <a href="/index.html"><img src="/images/logo-orinoco-white.png" class="logoImg" width="200" alt="logo orinoco"></a>
                 </div>
                 <div class="titlePage">
-                    <h1 class="text-white" id="title">Merci pour votre confiance</h1>
+                    <h1 class="text-white" id="title">Le spécialiste de la vente d'appareils photo vintage</h1>
                 </div>
 
             </div>
         </div>
-        <!--FIN BANNIERE EN-TETE-->
-    </header>
-    <main>
-        <div class="container">
-            <div class="row text-center">
-                <h1 class="fs-2 my-5">Récapitulatif de votre commande</h1>
+        
+        <!--ARTICLES-->
+        <div class="container mb-5">
+            <div class="row" id="product">
+              <!--INSERTION DE L'ARTICLE SÉLECTIONNÉ PAR L'UTILISATEUR-->
+              
+
+
+                
             </div>
-        </div>
+        </div>   
+
+
+
+
+
+
+
     </main>
      <!--FOOTER-->
      <footer class="pb-4">
@@ -62,8 +91,9 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <!-- JS -->
-    <script src="../js/index.js"></script>
+    <!--<script src="../js/index.js"></script>-->
     <script src="../js/product.js"></script>
-    <script src="../js/panier.js"></script>
+    <script src="../js/basket.js"></script>
+
 </body>
 </html>

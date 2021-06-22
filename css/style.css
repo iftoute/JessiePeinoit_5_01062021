@@ -10739,6 +10739,10 @@ a {
 }
 
 a:hover {
+  color: #a467be !important;
+}
+
+a.active {
   color: #a467be;
 }
 
