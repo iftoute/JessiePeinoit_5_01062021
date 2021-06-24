@@ -28,7 +28,7 @@ fetch(url)
                                                         <form class="form-group" id="form">
                                                             <label for="selectLens" class="col-4 my-3">Objectif</label>
                                                             <select name="productLens" class="col-7" id="selectLens"></select>
-                                                            <label for="quantité" class="col-4 mb-5">Quantité</label>
+                                                            <label for="quantité" class="col-4 mb-5" value="1">Quantité</label>
                                                             <input type="number" name="howmuch" step="1" class="col-1 text-center" id="quantité" min="1" value="1">
                                                             <button type="submit" id="addBasket" class="btn bg-dark bg-gradient text-white" onclick="addToBasket('${camera._id}')">Ajouter au panier</button>
                                                         </form>
@@ -68,4 +68,23 @@ function addToBasket(product){
 
 function saveBasket(basket){
     localStorage.setItem('basket',JSON.stringify(basket));
+}
+
+//TEST GESTION DES QUANTITES
+let app = document.getElementById('addBasket');
+
+/*for(let [i]; i < product.length; i++){
+    app[i].addEventlistener('click', () => {
+    console.log('ok')  
+    })
+}*/
+
+function number(){
+    let productNumber = localStorage.getItem('number');
+    number = parseInt(number);
+    if(productNumber){
+        localStorage.setItem('number', productNumber + 1);
+    } else {
+        localStorage.setItem('number', 1);
+    }
 }
