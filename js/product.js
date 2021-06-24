@@ -60,7 +60,7 @@ function checkBasket() {
 //AJOUT D'ELEMENT AU PANIER
 function addToBasket(product){
     let basket = checkBasket();
-    console.log(product);
+    console.log(JSON.stringify(product));
     basket.push(product);
     console.log(product);
     saveBasket(basket);
@@ -77,7 +77,7 @@ let app = document.getElementById('addBasket');
     app[i].addEventlistener('click', () => {
     console.log('ok')  
     })
-}*/
+}*///ne fonctionne pas
 
 function number(){
     let productNumber = localStorage.getItem('number');
