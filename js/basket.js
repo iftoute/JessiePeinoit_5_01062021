@@ -14,7 +14,7 @@ console.log(basketContent);
 //si le panier est vide
 if(basketContent === null){
     let emptyBasket = document.getElementById('eltPanier');
-    emptyBasket.insertAdjacentHTML('beforeend', `<div class="col-6">
+    emptyBasket.insertAdjacentHTML('beforeend', `<div class="col-12">
                                                     <h3 class="text-center my-5">Votre panier est vide</h3>
                                                 </div>
                                                 `)
@@ -33,21 +33,20 @@ if(basketContent === null){
         })
         .then(camera => {
             let eltBasket = document.getElementById('eltPanier');
-            //VOIR COMMENT AFFICHER LES ELEMENTS DU PRODUIT GRACE A SON ID
-            eltBasket.insertAdjacentHTML('beforeend',  ` <div class="col-6">
-                                                                <img class="imageCamera shadow mb-3" src="${camera.imageUrl}" width="100" height="100" alt="image camera">
+            eltBasket.insertAdjacentHTML('beforeend',  ` <div class="eltFromBasket">
+                                                            <div class="row text-center">
+                                                                <img class="imageCamera col-3 mx-auto shadow-lg mb-3 px-0" src="${camera.imageUrl}" width="100" height="100" alt="image camera">
                                                             </div>
-                                                            <div class="col-6">
-                                                                <h3 class= "nameCamera my-4">${camera.name}</h3>
-                                                                <p>${camera.quantite}</p>
-                                                                <p id="price">${camera.price}€</p>
-                                                                <button id="delete">X</button>
+                                                            <div class="row text-center">
+                                                                <h4 class="nameCamera my-1">${camera.name}</h4>
+                                                                <p id="price" class="mb-5">${(camera.price/100).toFixed(2)}€</p>
                                                             </div>
+                                                         </div>
                                                             `)
-                total += camera.price;
+                total += camera.price/100;
                 console.log(total); 
                 let totalContent = document.getElementById('total');
-                totalContent.innerHTML = total + "€";
+                totalContent.innerHTML = "Total de la commande " + total.toFixed(2) + " €";
 
         
         });
