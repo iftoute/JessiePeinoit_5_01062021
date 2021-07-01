@@ -1,19 +1,11 @@
-// - DEFINITION DES VARIABLES -
-let totalOrder = document.getElementById("totalOrder");
-let idOrder = document.getElementById("idOrder");
-
-let storageTotal = JSON.parse(localStorage.PriceOrder);
-let storageidCommande = localStorage.idOfCommand;
-
-
-// Affichage de la commande
-function displayOrder() {
-    total.textContent = `Total : ${storageTotal.toFixed(2)} €`;
-    idCommande.textContent = `Numéro de commande : ${storageidCommande}`;
+/////////////////////////////////////// Confirmation de la commade /////////////////////////////////
+function addConfirmation(){
+    const confirmationId = localStorage.getItem("orderConfirmation"); // récuperation de l'ID dans le local storage
+    const totalPrice = localStorage.getItem("totalPriceConfirmationPage"); //récuperation du prix dans le local storage
+    const messageConfirmation = document.getElementById('idOrder');
+    const confirmationPrice = document.getElementById('totalOrder');
+    messageConfirmation.innerHTML = "Nous vous remercions pour votre commande n° "+ confirmationId;
+    confirmationPrice.innerHTML = "Prix total de votre commande: "+ totalPrice + "€";
 }
 
-// - APPEL DES FONCTIONS -
-//   *******************
-
-displayCommand()
-window.localStorage.clear();
+addConfirmation();

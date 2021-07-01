@@ -1,13 +1,15 @@
 let contact = 
 {
-    'firstName': 'string',
-    'lastName': 'string',
-    'address': 'string',
-    'city': 'string',
-    'email': 'string',
+    'firstName': "",
+    'lastName': "",
+    'address': "",
+    'city': "",
+    'email': "",
 };
 
 let products = [];
+
+let order = contact + products;
 
 //on récupère les éléments contenus dans le panier
 let basketContent = JSON.parse(localStorage.getItem('basket'));
@@ -53,49 +55,36 @@ if(basketContent === null){
     
 }
 };
-console.log('commande');
 
+// ENVOYER LA REQUETE DE COMMANDE //
+function sendOrder(){
+    const name = document.getElementById("lastname").value;
+    const firstname = document.getElementById("firstname").value;
+    const mail = document.getElementById("email").value;
+    const adress = document.getElementById("address").value;
+    const city = document.getElementById("city").value;  
 
-// Soumission du formulaire
-// Fonction appelée à la soummission du formulaire
-let submit = document.getElementById('btnOrder');
-submit.addEventListener("submit", function (e) {
-    e.preventDefault();
-    contact.lastName = lastName.value;
-    contact.firstName = firstName.value;
-    contact.address = address.value;
-    contact.city = city.value;
-    contact.email = email.value;
-    addProductArray()
-    postOrder()
+    const formInformation = new formContent (name, firstname, mail, adress, city);
+    const basketContent = JSON.parse(localStorage.getItem("basketContent"));
 
-});
-
-// Ajout de chaque élément du panier dans l'array "products" qui va être envoyé à l'API
-function addProductArray() {
-    for (let element of basketContent) {
-        if (element.quantite > 0) {
-            for (let i = element.quantite; i > 0; i--) {
-                products.push(element._id)
-            }
-        }
+    let idOrder = [];
+    for (let i = 0; i < basketContent.length; i =  i ++){
+        basketContent[i].id;
+        idOrder.push(basketContent[i].id);
     }
-}
-
-// Envoi le formulaire et les produit à l'API, puis elle va retourner l'id de commande
-function postOrder() {
-    fetch('http://localhost:3000/api/cameras/order', {
+    const command = new orderInfo(formInformation, idOrder);
+    
+    fetch("http://localhost:3000/api/cameras/order", command){
         method: "POST",
-        body: JSON.stringify(commande),
+        body: JSON.stringify(command),
         headers: { "Content-type": "application/json; charset=UTF-8" }
-    })
-        .then(response => response.json())
-        .then(json => {
-            localStorage.setItem("idOrder", json.orderId);
-            localStorage.setItem("PriceOrder", total);
 
-            window.location.href = "http://127.0.0.1:5500/html/confirmation.html";
-
-        })
-        .catch(err => alert('Request Failed', err));
+    .then( function(response){
+        localStorage.setItem("basketContent", JSON.stringify([])); 
+        localStorage.setItem("orderConfirmation", response.orderId);
+        window.location.href = "http://127.0.0.1:5500/html/confirmation.html"; // on va à la page de confirmation
+    }).catch(function(err){
+        console.log(err);
+            alert("serveur HS");
+    });
 }

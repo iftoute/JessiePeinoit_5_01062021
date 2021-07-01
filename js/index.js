@@ -1,4 +1,3 @@
-//let product = [];
 
 // Récupération des données de l'API
 fetch ("http://localhost:3000/api/cameras")
@@ -27,9 +26,8 @@ fetch ("http://localhost:3000/api/cameras")
                                                 </div>
                                                 `
             );
-            //console.log(camera._id)
             }
-            //manque un .catch
+            .catch(function(err)       
         });
 
 // Fonction de stockage de l'ID du produit selectionné par l'utilisateur dans le localStorage 
