@@ -7,4 +7,5 @@ document.querySelector('#form > [type=submit]').addEventListener('click', functi
         //VERIFIE LA VALIDITE DES CHAMPS RENSEIGNES PAR L'UTILISATEUR ET AFFICHE UN MESSAGE D'ERREUR SI BESOIN
         input.reportValidity(); 
     }
+    //sendOrder();
 });

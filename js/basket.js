@@ -1,16 +1,3 @@
-let contact = 
-{
-    'firstName': "",
-    'lastName': "",
-    'address': "",
-    'city': "",
-    'email': "",
-};
-
-let products = [];
-
-let order = contact + products;
-
 //on récupère les éléments contenus dans le panier
 let basketContent = JSON.parse(localStorage.getItem('basket'));
 //console.log('basketContent:',JSON.parse(basketContent));
@@ -58,33 +45,31 @@ if(basketContent === null){
 
 // ENVOYER LA REQUETE DE COMMANDE //
 function sendOrder(){
+    console.log('send order');
     const name = document.getElementById("lastname").value;
     const firstname = document.getElementById("firstname").value;
     const mail = document.getElementById("email").value;
     const adress = document.getElementById("address").value;
     const city = document.getElementById("city").value;  
 
-    const formInformation = new formContent (name, firstname, mail, adress, city);
-    const basketContent = JSON.parse(localStorage.getItem("basketContent"));
-
+    const formInformation = new FormContent (name, firstname, mail, adress, city);
+    console.log(formInformation);
     let idOrder = [];
-    for (let i = 0; i < basketContent.length; i =  i ++){
-        basketContent[i].id;
-        idOrder.push(basketContent[i].id);
+    for (let content of basketContent){
+        idOrder.push(content.id);
     }
-    const command = new orderInfo(formInformation, idOrder);
-    
-    fetch("http://localhost:3000/api/cameras/order", command){
-        method: "POST",
-        body: JSON.stringify(command),
-        headers: { "Content-type": "application/json; charset=UTF-8" }
+    const command = new OrderInfo(formInformation, idOrder);
+
+    post("http://localhost:3000/api/cameras/order", command) 
 
     .then( function(response){
+        console.log(response);
         localStorage.setItem("basketContent", JSON.stringify([])); 
         localStorage.setItem("orderConfirmation", response.orderId);
-        window.location.href = "http://127.0.0.1:5500/html/confirmation.html"; // on va à la page de confirmation
+        //window.location.href = "http://127.0.0.1:5500/html/confirmation.html"; // on va à la page de confirmation
     }).catch(function(err){
         console.log(err);
             alert("serveur HS");
     });
 }
+
