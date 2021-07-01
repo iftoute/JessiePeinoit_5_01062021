@@ -10738,6 +10738,16 @@ a {
   color: black;
 }
 
+span.navbar-toggler-icon {
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+span.navbar-toggler-icon:hover {
+  color: #a467be;
+}
+
 a:hover {
   color: #a467be !important;
 }
@@ -10790,6 +10800,13 @@ a.active {
 
 #total {
   color: #a467be;
+}
+
+footer {
+  background-image: url(../images/footer.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 300px;
 }
 
 /*# sourceMappingURL=style.css.map */

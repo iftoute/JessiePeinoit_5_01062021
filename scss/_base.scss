@@ -7,6 +7,15 @@ a {
     color: black;
 }
 
+span.navbar-toggler-icon {
+    color: white;
+    display: flex;
+    align-items: center;
+}
+span.navbar-toggler-icon:hover {
+    color: $color-secondary;
+}
+
 a:hover {
     color: $color-secondary !important;
 }
@@ -59,4 +68,11 @@ a.active {
 
 #total {
     color: $color-secondary;
+}
+
+footer {
+    background-image: url(../images/footer.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300px;
 }
