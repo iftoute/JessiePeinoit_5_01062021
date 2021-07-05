@@ -36,40 +36,76 @@ if(basketContent === null){
                 total += camera.price/100;
                 let totalContent = document.getElementById('total');
                 totalContent.innerHTML = "Total de la commande " + total.toFixed(2) + " €";
-
-        
         });
-    
 }
 };
 
-// ENVOYER LA REQUETE DE COMMANDE //
-function sendOrder(){
-    console.log('send order');
-    const name = document.getElementById("lastname").value;
-    const firstname = document.getElementById("firstname").value;
-    const mail = document.getElementById("email").value;
-    const adress = document.getElementById("address").value;
-    const city = document.getElementById("city").value;  
+//On récupère les éléments du formulaire
+const lastName = document.getElementById("lastName").value;
+const firstName = document.getElementById("firstName").value;
+const email = document.getElementById("email").value;
+const address = document.getElementById("address").value;
+const city = document.getElementById("city").value;
 
-    const formInformation = new FormContent (name, firstname, mail, adress, city);
-    console.log(formInformation);
-    let idOrder = [];
+//On stocke dans une variable les éléménts du formulaire
+class FormContent {
+    constructor(lastName, firstName, email, address, city) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.email = email;
+        this.address = address;
+        this.city = city;
+    }
+};
+const formInformation = new FormContent (lastName, firstName, email, address, city);
+
+/*
+//On crée un tableau qui contiendra les produits du panier
+let idOrder = [];
+
+//Fonction qui récupère tous le contenu du panier et le place dans le tableau
+function getElementOrder() {
     for (let content of basketContent){
         idOrder.push(content.id);
-    }
-    const command = new OrderInfo(formInformation, idOrder);
+    }   
+};
 
+console.log(idOrder);
+console.log(basketContent);
+*/
+//Variable contenant les informations de la commande à retourner à l'API
+class OrderInfo {
+    constructor(formInformation, basketContent) {
+        this.formInformation = formInformation;
+        this.basketContent = basketContent;
+    }
+};
+const command = new OrderInfo (formInformation, basketContent);
+
+console.log(command);
+
+//fonction qui envoie la commande à l'API et qui renvoit à la page de confirmation
+function sendOrder(){
     post("http://localhost:3000/api/cameras/order", command) 
 
-    .then( function(response){
+    .then(function(response){
         console.log(response);
         localStorage.setItem("basketContent", JSON.stringify([])); 
         localStorage.setItem("orderConfirmation", response.orderId);
-        //window.location.href = "http://127.0.0.1:5500/html/confirmation.html"; // on va à la page de confirmation
+        // on va à la page de confirmation
+        window.location.href = "http://127.0.0.1:5500/html/confirmation.html"; 
     }).catch(function(err){
         console.log(err);
             alert("serveur HS");
     });
-}
+};
+
+//Fonction qui vérifié la validité des éléments du formulaire et envoie la comm nde à l'API
+function submitOrder() {
+        for(let input of document.querySelectorAll('#form > input:not([type="submit"])')){ 
+            input.reportValidity();
+        }
+        getElementOrder();
+        sendOrder();
+};
 
