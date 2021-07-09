@@ -7,7 +7,7 @@ if(basketContent === null){
     emptyBasket.insertAdjacentHTML('beforeend', `<div class="col-12">
                                                     <h3 class="text-center my-5">Votre panier est vide</h3>
                                                 </div>
-                                                `)
+                                                `);
 //si le panier est n'est pas vide, afficher tous les produits du localStorage
 }else {
     var total = 0;
@@ -36,19 +36,29 @@ if(basketContent === null){
                 total += camera.price/100;
                 let totalContent = document.getElementById('total');
                 totalContent.innerHTML = "Total de la commande " + total.toFixed(2) + " €";
-        });
-}
+        })
+        .catch(function(err){
+            console.log(err);
+        })
 };
 
-//On récupère les éléments du formulaire
+
+
+const contact = "";
+const command = "";
+
+//Fonction qui récupère tous le contenu du panier et le place dans le tableau
+function getElementForm() {
+    //On récupère les éléments du formulaire
 const lastName = document.getElementById("lastName").value;
 const firstName = document.getElementById("firstName").value;
 const email = document.getElementById("email").value;
 const address = document.getElementById("address").value;
 const city = document.getElementById("city").value;
+console.log('ok');
 
 //On stocke dans une variable les éléménts du formulaire
-class FormContent {
+class FormContact {
     constructor(lastName, firstName, email, address, city) {
         this.lastName = lastName;
         this.firstName = firstName;
@@ -57,55 +67,54 @@ class FormContent {
         this.city = city;
     }
 };
-const formInformation = new FormContent (lastName, firstName, email, address, city);
 
-/*
-//On crée un tableau qui contiendra les produits du panier
-let idOrder = [];
+const contact = new FormContact (lastName, firstName, email, address, city);
 
-//Fonction qui récupère tous le contenu du panier et le place dans le tableau
-function getElementOrder() {
-    for (let content of basketContent){
-        idOrder.push(content.id);
-    }   
-};
-
-console.log(idOrder);
-console.log(basketContent);
-*/
-//Variable contenant les informations de la commande à retourner à l'API
 class OrderInfo {
-    constructor(formInformation, basketContent) {
-        this.formInformation = formInformation;
-        this.basketContent = basketContent;
+    constructor(contact, products) {
+        this.contact = contact;
+        this.products = products;
     }
 };
-const command = new OrderInfo (formInformation, basketContent);
+
+const command = new OrderInfo (contact, basketContent);
 
 console.log(command);
 
-//fonction qui envoie la commande à l'API et qui renvoit à la page de confirmation
-function sendOrder(){
-    post("http://localhost:3000/api/cameras/order", command) 
+}
 
-    .then(function(response){
+//Variable contenant les informations de la commande à retourner à l'API
+
+const response = "";
+
+function sendOrder () {
+    const url = 'http://localhost:3000/api/cameras/order';
+    const options = {
+            method: 'POST',
+            body: command,
+            headers: {
+                //'Accept': 'application/json', 
+                'Content-Type': 'application/json'    }
+        }
+    fetch(url, options)
+        .then(res => res.json())
+        .then(res => response = res)
+        .catch(err => {
+            console.error('Error: ', err);
+        });
         console.log(response);
-        localStorage.setItem("basketContent", JSON.stringify([])); 
-        localStorage.setItem("orderConfirmation", response.orderId);
-        // on va à la page de confirmation
-        window.location.href = "http://127.0.0.1:5500/html/confirmation.html"; 
-    }).catch(function(err){
-        console.log(err);
-            alert("serveur HS");
-    });
-};
+}
+        
 
 //Fonction qui vérifié la validité des éléments du formulaire et envoie la comm nde à l'API
 function submitOrder() {
         for(let input of document.querySelectorAll('#form > input:not([type="submit"])')){ 
             input.reportValidity();
         }
-        getElementOrder();
+        console.log('ok');
+
+        getElementForm();
         sendOrder();
-};
+    }
+}
 

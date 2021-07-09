@@ -26,9 +26,9 @@ fetch ("http://localhost:3000/api/cameras")
                                                 </div>
                                                 `
             );
-            }
-            .catch(function(err)       
-        });
+        };
+    })
+        
 
 // Fonction de stockage de l'ID du produit selectionné par l'utilisateur dans le localStorage 
     function localId(id) {
