@@ -24,15 +24,15 @@ fetch ("http://localhost:3000/api/cameras")
                                                         
                                                     </div>
                                                 </div>
-                                                `
-            );
-        };
-    })
+                                                `);
+            }
+        })
+        .catch(error => alert("Erreur : " + error));
+    
         
 
 // Fonction de stockage de l'ID du produit selectionné par l'utilisateur dans le localStorage 
     function localId(id) {
-    //localStorage.clear();
     localStorage.setItem('id', id);
     }
     

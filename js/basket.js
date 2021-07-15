@@ -1,16 +1,20 @@
 //on récupère les éléments contenus dans le panier
 let basketContent = JSON.parse(localStorage.getItem('basket'));
-//console.log('basketContent:',JSON.parse(basketContent));
-//si le panier est vide
+let total = 0;
+
+
+
+//si le panier est vide on renvoie un message "votre panier est vide"
 if(basketContent === null){
     let emptyBasket = document.getElementById('eltPanier');
     emptyBasket.insertAdjacentHTML('beforeend', `<div class="col-12">
                                                     <h3 class="text-center my-5">Votre panier est vide</h3>
                                                 </div>
                                                 `);
+                            
 //si le panier est n'est pas vide, afficher tous les produits du localStorage
 }else {
-    var total = 0;
+    // création de la variable qui va stocker le total du panier
     for(let cameraId of basketContent){
         let url = "http://localhost:3000/api/cameras/" + cameraId;
         fetch (url)
@@ -33,31 +37,23 @@ if(basketContent === null){
                                                             </div>
                                                          </div>
                                                             `)
+                //calcul du total                                                
                 total += camera.price/100;
                 let totalContent = document.getElementById('total');
                 totalContent.innerHTML = "Total de la commande " + total.toFixed(2) + " €";
+                localStorage.setItem('totalOrder', total);
         })
-        .catch(function(err){
-            console.log(err);
-        })
+        .catch(error => alert("Erreur : " + error));
 };
 
 
 
-const contact = "";
-const command = "";
 
-//Fonction qui récupère tous le contenu du panier et le place dans le tableau
-function getElementForm() {
-    //On récupère les éléments du formulaire
-const lastName = document.getElementById("lastName").value;
-const firstName = document.getElementById("firstName").value;
-const email = document.getElementById("email").value;
-const address = document.getElementById("address").value;
-const city = document.getElementById("city").value;
-console.log('ok');
+//Stockage des produits du panier dans la variable products attendue par l'API
+const products = basketContent;
 
-//On stocke dans une variable les éléménts du formulaire
+
+//Création de la class concernant les informations du formulaire
 class FormContact {
     constructor(lastName, firstName, email, address, city) {
         this.lastName = lastName;
@@ -66,55 +62,55 @@ class FormContact {
         this.address = address;
         this.city = city;
     }
-};
-
-const contact = new FormContact (lastName, firstName, email, address, city);
-
-class OrderInfo {
-    constructor(contact, products) {
-        this.contact = contact;
-        this.products = products;
-    }
-};
-
-const command = new OrderInfo (contact, basketContent);
-
-console.log(command);
-
 }
 
-//Variable contenant les informations de la commande à retourner à l'API
+//Ajout des informations du formulaire à la variable contact
+const contact = new FormContact (lastName, firstName, email, address, city);
 
-const response = "";
+//Fonction qui vérifié la validité des éléments du formulaire et envoie la commande à l'API
+function submitOrder() {
+    for(let input of document.querySelectorAll('#form > input:not([type="submit"])')){ 
+        input.reportValidity();
+    }
+}
 
+//Création de la variable qui va stocker les éléments de la commande (contact + products)
+const order = {
+    contact,
+    products
+}
+
+//fonction POST de la commande à l'API
 function sendOrder () {
     const url = 'http://localhost:3000/api/cameras/order';
     const options = {
             method: 'POST',
-            body: command,
+            body: JSON.stringify(order),
             headers: {
-                //'Accept': 'application/json', 
+                'Accept': 'application/json', 
                 'Content-Type': 'application/json'    }
         }
     fetch(url, options)
         .then(res => res.json())
-        .then(res => response = res)
-        .catch(err => {
-            console.error('Error: ', err);
-        });
-        console.log(response);
-}
-        
-
-//Fonction qui vérifié la validité des éléments du formulaire et envoie la comm nde à l'API
-function submitOrder() {
-        for(let input of document.querySelectorAll('#form > input:not([type="submit"])')){ 
-            input.reportValidity();
-        }
-        console.log('ok');
-
-        getElementForm();
-        sendOrder();
-    }
+        .then(json => {
+            localStorage.setItem("orderId", json.orderId);
+            window.location.href = "http://127.0.0.1:5500/html/confirmation.html";
+        })
+        .catch(error => alert("Erreur : " + error));
 }
 
+// Fonction appelé à la soummission du formulaire
+form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    contact.lastName = lastName.value;
+    contact.firstName = firstName.value;
+    contact.address = address.value;
+    contact.city = city.value;
+    contact.email = email.value;
+    submitOrder();
+    sendOrder();
+
+
+})
+
+}
