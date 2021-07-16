@@ -1,10 +1,10 @@
-//variable de stockage de l'ID du produit séléctionné
+//console.log(localStorage.getItem('id'))
 var id = localStorage.id;
 
-//variable de l'URL+ID
 var url = "http://localhost:3000/api/cameras/" + localStorage.id;
+//console.log(url)
 
-//Requête Fetch pour récupérer les données du produit de l'ID sélectionné par l'utilisateur
+// API Fetch pour récupérer les données de l'ID sélectionné par l'utilisateur
 fetch(url)
     .then(function (response) {
         if (response.ok) {
@@ -13,7 +13,7 @@ fetch(url)
             console.log("Problème de connexion au serveur")
         }
     })
-    // Promise pour les éléments reçus  de l'objet sélectionné
+    // Promise pour les éléments reçus par le serveur de l'objet sélectionné
     .then(camera => {
         let product = document.getElementById('product');
 
@@ -33,41 +33,58 @@ fetch(url)
                                                             <button type="submit" id="addBasket" class="btn bg-dark bg-gradient text-white" onclick="addToBasket('${camera._id}')">Ajouter au panier</button>
                                                         </form>
                                                     </div>
-                                                    `);
-        //Boucle de récupération des différents objectifs proposé pour chaque produit
+                                                    `
+        );
+        //console.log(camera);
+
         for (let lens of camera.lenses) {
             let selector = document.getElementById("selectLens");
             selector.insertAdjacentHTML('beforeend', `<option>${lens}</option>`)
         };
     })
-    .catch(error => alert("Erreur : " + error));
+//manque un .catch
+//});
 
-
-//Fonction de vérification du panier
+//VERIFICATION DU PANIER
 function checkBasket() {
-    //Variable qui récupère les éléments du panier dans le localStorage
     let basket = localStorage.getItem('basket');
     console.log(basket);
-    //Si le panier n'est pas vide, retourne l'objet sinon retourne un tableau vide
     if (basket != null) {
         return JSON.parse(basket);
     } else {
         return [];
     }
 };
+//console.log(localStorage);
 
-//fonction qui ajoute un élément au panier
+//AJOUT D'ELEMENT AU PANIER
 function addToBasket(product){
     let basket = checkBasket();
     console.log(JSON.stringify(product));
-    //Ajoute les éléments au panier dans le localStorage
     basket.push(product);
     console.log(product);
     saveBasket(basket);
 }
 
-//Fonction d'ajout des produits dans le localStorage
 function saveBasket(basket){
     localStorage.setItem('basket',JSON.stringify(basket));
 }
 
+//TEST GESTION DES QUANTITES
+let app = document.getElementById('addBasket');
+
+/*for(let [i]; i < product.length; i++){
+    app[i].addEventlistener('click', () => {
+    console.log('ok')  
+    })
+}*///ne fonctionne pas
+
+function number(){
+    let productNumber = localStorage.getItem('number');
+    number = parseInt(number);
+    if(productNumber){
+        localStorage.setItem('number', productNumber + 1);
+    } else {
+        localStorage.setItem('number', 1);
+    }
+}

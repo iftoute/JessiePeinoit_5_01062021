@@ -15,27 +15,28 @@
             <div class="container-fluid">
                 <div class="row bg-dark">
                     <nav class="col navbar navbar-expand-lg" id="nav">
-                        <a class="navbar-brand text-white" href="index.html">ORINOCO</a>
+                        <a class="navbar-brand text-white" href="../index.html">ORINOCO</a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
                           </button>
                             <div class="justify-content-end collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="/index.html">Accueil</a>
-                                </li>
-                                <!--lIEN PAGE ACTIVE-->
-                                <li class="nav-item">
-                                    <a class="nav-link active" href="./html/basket.html">Panier</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="confirmation.html">Commande</a>
-                                </li>
-                            </ul>
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" href="/index.html">Accueil</a>
+                                    </li>
+                                    <!--lIEN PAGE ACTIVE-->
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="./html/basket.html">Panier</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" href="confirmation.html">Commande</a>
+                                    </li>
+                                </ul>
+                            </div>
                     </nav>
                 </div>
             </div>
-       
+        </div>       
     </header>
     <!--MAIN-->
     <main>
@@ -68,13 +69,14 @@
                         <input type="text" class="col-6 my-3" id="lastName" placeholder="Nom" required>
                         <input type="text" class="col-6 my-3" id="firstName" placeholder="Prénom" required> 
                         <input type="text" class="col-6 my-3" id="address" placeholder="Adresse" required> 
-                        <input type="text" class="col-6 my-3"id="city" placeholder="Ville" required> 
-                        <input type="email" class="col-6 my-3"id="email" placeholder="Email" required>
-                        <input type="submit" value="Commander" id="submit"  class="btn bg-dark bg-gradient text-white col-6 my-3" id="btnOrder">
+                        <input type="text" class="col-6 my-3" id="city" placeholder="Ville" required> 
+                        <input type="email" class="col-6 my-3" id="email" placeholder="Email" required>
+                        <input type="submit" value="Commander" id="submit"  class="btn bg-dark bg-gradient text-white col-6 my-3">
                     </form>
                 </div>
             </div>
         </div>
+    </main>
       <!--FOOTER-->
     <footer class="pb-4">
         <div class="container-fluid">
@@ -107,5 +109,6 @@
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
      <!-- JS PAGES-->
      <script src="../js/basket.js"></script>
+     <script src="../js/class/formContact.js"></script>
 </body>
 </html>
