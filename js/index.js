@@ -1,8 +1,9 @@
-// Récupération des données de l'API avec la requête GET
+// Récupération des données de l'API avec la requête GET/
 fetch('http://localhost:3000/api/cameras')
   .then((response) => response.json())
   .then((cameras) => {
-    for (camera of cameras){
+    for (camera of cameras) {
+      // On récupère l'élément html pour y insérer la liste des articles
       const elt = document.getElementById('articles');
       // Insertion d'élements HTML pour les articles renvoyés par l'API
       elt.insertAdjacentHTML('beforeend', `<div class="col-12 col-md-6 col-xl-4 text-center mb-5">
@@ -18,7 +19,6 @@ fetch('http://localhost:3000/api/cameras')
     }
   })
   .catch((error) => alert(`Erreur : ${error}`));
-
 
 // Fonction de stockage de l'ID du produit selectionné par l'utilisateur dans le localStorage
 function localId(id) {
